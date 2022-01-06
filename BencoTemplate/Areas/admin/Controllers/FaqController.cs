@@ -41,7 +41,44 @@ namespace BencoTemplate.Areas.admin.Controllers
 
             return View(model);
         }
-         
+        [HttpGet]
 
+        public IActionResult Update (int? Id)
+        {
+
+
+            return View(_context.Faqs.Find(Id));
+
+        }
+        [HttpPost]
+        public IActionResult Update(Faq model)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Faqs.Update(model);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+
+
+            return View(model);
+        }
+        public IActionResult Delete(int? Id)
+        {
+            if (Id == null)
+            {
+                return NotFound();
+            }
+            Faq faq = _context.Faqs.Find(Id);
+            if (faq == null)
+            {
+                return NotFound();
+            }
+            _context.Faqs.Remove(faq);
+            _context.SaveChanges();
+            return RedirectToAction("index");
+           
+        }
     }
 }

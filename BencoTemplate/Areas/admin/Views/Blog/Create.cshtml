@@ -1,0 +1,48 @@
+﻿@model Blog
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+            <form asp-area="admin" asp-controller="blog" asp-action="create" method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="mb-3">
+                    <label asp-for="@Model.ImageFile" class="form-label">Image</label>
+                    <input class="form-control" asp-for="@Model.ImageFile">
+                    <span asp-validation-for="@Model.ImageFile" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="@Model.Name" class="form-label">Name blog</label>
+                    <input class="form-control" asp-for="@Model.Name">
+                    <span asp-validation-for="@Model.Name" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="@Model.Context" class="form-label">Context</label>
+                    <input class="form-control" asp-for="@Model.Context">
+                    <span asp-validation-for="@Model.Context" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="@Model.TagToBlogs" class="form-label">Tags</label>
+                    <select class="form-control js-example-basic-multiple" multiple="multiple" asp-for="@Model.TagToBlogs" asp-items="@(new SelectList(ViewBag.Tags, "Id", "Name"))">
+                    </select>
+                    <span asp-validation-for="@Model.TagToBlogs" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="@Model.CustomUser" class="form-label">CustomUser</label>
+                    <select class="form-control js-example-basic-multiple" multiple="multiple" asp-for="@Model.CustomUser" asp-items="@(new SelectList(ViewBag.CustomUser, "Id", "Name"))">
+                    </select>
+                    <span asp-validation-for="@Model.CustomUser" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Create</button>
+            </form>
+        </div>
+    </div>
+</div>
